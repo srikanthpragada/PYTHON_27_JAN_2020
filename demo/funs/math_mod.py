@@ -1,6 +1,12 @@
 # Math functions
 
 def iseven(e):
+    """
+    Returns true if given number is even otherwise false
+
+    param e: number to be checked
+    return: True or False
+    """
     return e % 2 == 0
 
 
