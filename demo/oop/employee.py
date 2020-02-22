@@ -10,6 +10,9 @@ class Employee:
     def change_salary(self, newsalary):
         if newsalary > 0:
             self.__salary = newsalary
+        else:
+            raise ValueError("Sorry! Invalid salary!")
+
 
 
 e1 = Employee("Jack", 200000)
