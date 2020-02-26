@@ -10,7 +10,8 @@ for line in sf.readlines():
         continue
 
     parts = line.split(",")
-    names.update(parts)  # Add new names to set
+    for name in parts:
+       names.add(name.strip())  # Add new name to set
 
 sf.close()
 
