@@ -4,7 +4,10 @@ from datetime import datetime
 
 # Function view
 def welcome(request):
-    name = request.GET['name']  # read value from name parameter
+    if 'name' in request.GET:
+       name = request.GET['name']  # read value from name parameter
+    else:
+       name = "Guest"
     return HttpResponse(f"<h1 style='color:blue'>{name}, Welcome To Django!</h1>")
 
 

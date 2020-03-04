@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Jobs</title>
+</head>
+<body>
+<h1 style="color:blue">List of Jobs</h1>
+
+<ul>
+    {% for job in jobs %}
+       <li style="color:maroon">{{job.1}} - {{job.2}} </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
