@@ -7,15 +7,16 @@
 <body>
 <h1>Add Job</h1>
 
-<form action="/hr/add_job/" method="get">
+<form action="/hr/add_job/" method="post">
+    {% csrf_token %}
     Job Id <br/>
-    <input type="text" size="10" name="jobid"/>
+    <input type="text" required="true" size="10" name="jobid"/>
     <p/>
     Job Title <br/>
-    <input type="text" size="30" name="jobtitle"/>
+    <input type="text" required="true" size="30" name="jobtitle"/>
     <p/>
     Min Salary <br/>
-    <input type="number"  name="minsalary"/>
+    <input type="number"  required="true" name="minsalary"/>
     <p/>
     <input type="submit" value="Add Job" />
 </form>

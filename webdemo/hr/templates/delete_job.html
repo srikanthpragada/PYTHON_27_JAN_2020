@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Job</title>
+</head>
+<body>
+<h1>Delete Job</h1>
+
+<form action="/hr/delete_job/" method="post">
+    {% csrf_token %}
+    Job Id <br/>
+    <input type="text" value="{{jobid}}" required="true" size="10" name="jobid"/>
+    <p/>
+    <input type="submit" value="Delete Job" />
+</form>
+
+<h4>{{message}}</h4>
+</body>
+</html>

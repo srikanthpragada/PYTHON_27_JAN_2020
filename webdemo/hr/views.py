@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import sqlite3
 import requests
+from .forms import  JobForm
 
 
 def welcome(request):
@@ -31,11 +32,11 @@ def country_info(request):
 
 
 def add_job(request):
-    if 'jobid' in request.GET:
+    if request.method == "POST":
         # process data as request contains data
-        jobid = request.GET['jobid']
-        jobtitle =request.GET['jobtitle']
-        minsalary = request.GET['minsalary']
+        jobid = request.POST['jobid']
+        jobtitle =request.POST['jobtitle']
+        minsalary = request.POST['minsalary']
         con = sqlite3.connect(r"e:\classroom\python\jan27\hr.db")
         cur = con.cursor()
         cur.execute("insert into jobs values(?,?,?)",
@@ -47,5 +48,36 @@ def add_job(request):
                       {'message': "Job has been added succesfully!"})
         # return redirect("/hr/jobs")
     else:
-        # Send empty form becuase it is first request
+        # Send empty form because it is GET request
         return render(request,"add_job.html")
+
+
+def delete_job(request):
+    if request.method == "POST":
+        # process data as request contains data
+        jobid = request.POST['jobid']
+        con = sqlite3.connect(r"e:\classroom\python\jan27\hr.db")
+        cur = con.cursor()
+        cur.execute("delete from jobs where id = ?", (jobid,))
+        count = cur.rowcount
+        con.commit()
+        cur.close()
+        con.close()
+        if count == 1:
+           return redirect("/hr/jobs")
+        else:
+           return render(request, "delete_job.html",
+                         {'jobid' : jobid, 'message' : 'Job Id Not Found!'})
+    else:
+        # Send empty form because it is GET request
+        return render(request,"delete_job.html")
+
+
+def update_job(request):
+    if request.method == "GET":
+        f = JobForm()
+        return render(request,'update_job.html',{'form' : f})
+    else:  # POST
+        pass
+
+

@@ -8,5 +8,7 @@ urlpatterns = [
     path('countries/', views.list_countries),
     path('countryinfo/', views.country_info),
     path('add_job/', views.add_job),
+    path('delete_job/', views.delete_job),
+    path('update_job/', views.update_job),
 ]
 
