@@ -78,6 +78,27 @@ def update_job(request):
         f = JobForm()
         return render(request,'update_job.html',{'form' : f})
     else:  # POST
-        pass
+        f = JobForm(request.POST)
+        if f.is_valid():
+            id = f.cleaned_data['id']
+            title = f.cleaned_data['title']
+            minsal = f.cleaned_data['minsal']
+            con = sqlite3.connect(r"e:\classroom\python\jan27\hr.db")
+            cur = con.cursor()
+            cur.execute("update jobs set title = ?, minsal = ? where id = ?",
+                        (title,minsal,id))
+            con.commit()
+            count = cur.rowcount
+            cur.close()
+            con.close()
+            if count == 1:
+               return render(request, "update_job.html",
+                          {'form': f, 'message': "Job has been updated successfully!"})
+            else:
+                return render(request, "update_job.html",
+                              {'form': f, 'message': "Job Id Not Found!"})
+        else:
+            return render(request, "update_job.html", {'form': f})
+
 
 
