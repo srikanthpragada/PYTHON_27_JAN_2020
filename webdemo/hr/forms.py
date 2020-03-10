@@ -1,4 +1,5 @@
 import django.forms as forms
+from .models import Book
 
 
 class JobForm(forms.Form):
@@ -6,3 +7,9 @@ class JobForm(forms.Form):
     title = forms.CharField(label="Job Title", max_length=50)
     minsal = forms.IntegerField(label="Min Salary")
 
+
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = '__all__'
