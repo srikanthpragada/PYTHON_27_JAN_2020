@@ -12,6 +12,9 @@ urlpatterns = [
     path('update_job/', views.update_job),
     path('books/home/', books_views.book_home),
     path('books/list/', books_views.book_list),
+    path('books/add/', books_views.book_add),
+    path('books/delete/<int:id>', books_views.book_delete),
+    path('books/edit/<int:id>', books_views.book_edit),
 
 ]
 
