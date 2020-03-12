@@ -4,12 +4,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     function getBooks() {
-       $.get("/catalog/books/dosearch?title=" + $("#title").val(),null, showBooks);
+       $.get("/hr/books/dosearch?title=" + $("#title").val(),null, showBooks);
     }
     function showBooks(books) {
         output = "";
         for(i=0; i < books.length; i ++)
-             output += "<li>" + books[i].title + "</li>";
+             output += "<div>" + books[i].title + " - " + books[i].price + "</div>";
 
         $("#books").html(output)
     }
@@ -20,8 +20,9 @@
 
 Title : <input type="text" id="title"/>
 <button onclick="getBooks()">Go</button>
-<ul id="books">
+<p></p>
+<div id="books">
 
-</ul>
+</div>
 
 {% endblock %}
