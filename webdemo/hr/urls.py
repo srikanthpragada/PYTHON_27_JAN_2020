@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from . import views, books_views
+from .rest import rest_views
 
 urlpatterns = [
     path('welcome/', views.welcome),
@@ -17,6 +18,8 @@ urlpatterns = [
     path('books/edit/<int:id>', books_views.book_edit),
     path('books/search/', books_views.book_search),
     path('books/dosearch/', books_views.book_do_search),
+    path('rest/books/', rest_views.process_books),
+    path('rest/books/<int:id>', rest_views.process_one_book),
 
 ]
 
